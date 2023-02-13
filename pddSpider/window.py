@@ -10,8 +10,6 @@ class TreeViewClass(TreeViewUtils):
         TreeViewUtils.__init__(self, parent, **args)
 
 
-
-
 class App(ttk.Frame):
     def __init__(self, parent):
         ttk.Frame.__init__(self, parent)
@@ -27,18 +25,19 @@ class App(ttk.Frame):
         self.__CommandFrame = ttk.LabelFrame(self, text = '控制台')
         self.__CommandFrame.grid(row = 0, column = 0, padx = (20, 10), pady = (20, 10), sticky = 'NSEW')
         self.__ListFrame = ttk.Frame(self)
-        self.__ListFrame.grid(row = 0, column = 1, padx = (20, 10), pady = (20, 10), sticky = 'NSEW')
+        self.__ListFrame.grid(row = 0, column = 1, padx = (20, 10), pady = (20, 0), sticky = 'NSEW')
         self.__TaskFrame = ttk.LabelFrame(self, text = '任务列表    ')
         self.__SearchFrame = ttk.LabelFrame(self, text = '搜索结果')
         # self.__TaskFrame.grid(row = 0, column = 2, padx = (20, 10), pady = (20, 10))
         self.__resultFrame = ttk.LabelFrame(self, text = '状态')
-        self.__resultFrame.grid(row = 1, column = 0, columnspan = 2,sticky = 'NSEW', padx = (20, 10), pady = (20, 10))
+        self.__resultFrame.grid(row = 1, column = 0, columnspan = 2,sticky = 'NSEW', padx = (20, 10), pady = (5, 10))
 
         self.columnconfigure(0, weight = 1)
         self.columnconfigure(1, weight = 1)
         self.rowconfigure(0, weight = 1)
         self.rowconfigure(1, weight = 1)
         self.setupTopPart(username = 'caixy')
+        self.setupBottomPart()
 
 
     def setupTopPart(self, **kwargs):
@@ -90,8 +89,7 @@ class App(ttk.Frame):
         self.SearchBox = TreeViewClass(self.__SearchFrame,
                                        columns = ('关键词', '链接', '价格', '店铺名称', '添加任务'),
                                        show = "headings",
-                                       yscrollcommand = Searchscrollbar
-                                       )
+                                       yscrollcommand = Searchscrollbar)
         self.SearchBox.insert_data(['12', '21', '312', '31', '开始任务'])
 
         # 绘制任务列表
@@ -109,17 +107,18 @@ class App(ttk.Frame):
         self.NoteTab.add(self.__SearchFrame, text = '搜索结果')
         self.NoteTab.add(self.__TaskFrame, text = '任务列表')
 
+
+
+
+    def setupBottomPart(self):
         # 绘制爬取结果列表
         TaskScrollBar = ttk.Scrollbar(self.__resultFrame)
         TaskScrollBar.pack(side = "right", fill = "y")
         self.resultBox = TreeViewClass(self.__resultFrame,
                                        columns = ('任务ID', '任务关键词', '任务链接', '任务状态'),
                                        show = 'headings',
-                                       yscrollcommand = TaskScrollBar)
-
-
-    def setupBottomPart(self):
-        pass
+                                       yscrollcommand = TaskScrollBar
+                                       )
 
 def main():
     root = tk.Tk()

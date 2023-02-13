@@ -38,3 +38,4 @@ class TreeViewUtils(Treeview):
 
     def bindEvent(self, event_name, func):
         self.bind(event_name, func)
+
