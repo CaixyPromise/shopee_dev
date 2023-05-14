@@ -1,3 +1,5 @@
 .idea/
 test.py
 __pycache__/
+爬取结果参考json.json
+拼多多商品参考json.json

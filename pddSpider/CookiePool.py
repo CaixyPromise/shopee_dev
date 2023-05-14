@@ -2,7 +2,7 @@ import sqlite3
 
 class CookiePool:
     def __init__(self, db_path):
-        self.__conn = sqlite3.connect(db_path)
+        self.__conn = sqlite3.connect(db_path) 
         self.__cursor = self.__conn.cursor()
         self.__cursor.execute('''
             CREATE TABLE IF NOT EXISTS Cookie_Pool 
@@ -16,7 +16,7 @@ class CookiePool:
     def add_data(self, cookie):
         try:
             self.__cursor.execute("""
-                        INSERT INTO Cookie_Pool(cookie) VALUES (?)
+                        INSERT INTO Cookie_Pool (cookie) VALUES (?)
                     """, (cookie,)
                                   )
             self.__conn.commit()
@@ -35,7 +35,7 @@ class CookiePool:
         self.__conn.commit()
 
     def get_all(self):
-        sql = 'SELECT * FROM Cookie_Pool'
+        sql = 'SELECT Cookie_Pool.id, Cookie_Pool.cookie, Cookie_Pool.created_at FROM Cookie_Pool'
         self.__cursor.execute(sql)
         rows = self.__cursor.fetchall()
         return rows
