@@ -100,7 +100,6 @@ class App(ttk.Frame):
                                        show = 'headings',
                                        yscrollcommand = TaskScrollBar
                                        )
-
 def main():
     root = tk.Tk()
     root.title("拼多多爬取平台_vBeta 0.1_CAIXYPROMISE")
