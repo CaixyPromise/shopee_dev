@@ -5,16 +5,26 @@ import re
 
 
 class TreeViewUtils(Treeview):
-    def __init__(self, parent, columns, pack_now = True,  column_width = 100, **kwags):
-        Treeview.__init__(self, parent, **kwags)
+    def __init__(self, parent, pack_now = True, **args):
+        Treeview.__init__(self, parent,  **args)
         self.__pack_now = pack_now
-        if (self.__pack_now is True):
+        if self.__pack_now:
             self.pack(fill = 'both', expand = True)
+        for column in self['columns']:
+            self.column(column, width = 70, anchor = 'center')
+            self.heading(column, text = column,
+                         command = lambda _col = column: self.sort_tree(self, _col, False))
 
-        for column in (columns):
-            self.column(column, width = column_width, anchor = kwags.get('anchor', 'center'))
-            self.heading(column, text = column, )
-
+    # def __init__(self, parent, columns, pack_now = True,  column_width = 100, **kwags):
+    #     Treeview.__init__(self, parent, **kwags)
+    #     self.__pack_now = pack_now
+    #     if (self.__pack_now is True):
+    #         self.pack(fill = 'both', expand = True)
+    #         print('pack_now')
+    #     for col in self['columns']:
+    #         self.column(col, width = column_width, anchor = kwags.get('anchor', 'center'))
+    #         self.heading(col, text = col )
+    #
     def pack_part(self, parent = None):
         if (not self.__pack_now):
             if (parent is None):

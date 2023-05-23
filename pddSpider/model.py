@@ -217,4 +217,4 @@ json_text = r'{"store":{"errorRedirectUrl":"\u002F","isPre":false,"$likeMallText
 
 cleaner = DataCleaner(json_text)
 result = asyncio.run(cleaner.run())
-print(dumps(result, ensure_ascii = False, indent = 4))
+# print(dumps(result, ensure_ascii = False, indent = 4))

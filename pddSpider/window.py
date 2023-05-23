@@ -72,6 +72,7 @@ class App(ttk.Frame):
         self.SearchBox = TreeViewClass(self.__SearchFrame,
                                        columns = ('关键词', '链接', '价格', '店铺名称', '添加任务'),
                                        show = "headings",
+
                                        yscrollcommand = Searchscrollbar)
         self.SearchBox.insert_data(['12', '21', '312', '31', '开始任务'])
 
