@@ -35,33 +35,32 @@ class App(ttk.Frame):
 
     def setupTopPart(self, **kwargs):
         # 信息输入框
-        SPACING = 10
-        LABEL_WIDTH = 10
-        ttk.Label(self.__CommandFrame, text = '欢迎回来: {}'.format(kwargs.get('username')), font = 15).grid(
-                column = 0, row = 0, sticky = "W", padx = (SPACING, 0))
 
-        ttk.Label(self.__CommandFrame, text = '关键字：', width = LABEL_WIDTH, font = 15).grid(row = 1, column = 0, sticky = "W",
-                                                                                   padx = (SPACING, 0))
+        ttk.Label(self.__CommandFrame, text = '欢迎回来: {}'.format(kwargs.get('username')), font = 15).grid(
+                column = 0, row = 0, sticky = "W", padx = (10, 0))
+
+        ttk.Label(self.__CommandFrame, text = '关键字：', width = 10, font = 15).grid(row = 1, column = 0, sticky = "W",
+                                                                                   padx = (10, 0))
         ttk.Entry(self.__CommandFrame, textvariable = self.__keyword_VAL, width = 15).grid(row = 1, column = 1,
-                                                      sticky = "W", padx = (0, SPACING), pady = (0, SPACING))
+                                                      sticky = "W", padx = (0, 10), pady = (0, 10))
         ttk.Button(self.__CommandFrame, text = '开始爬虫搜索').grid(row = 2, column = 0, sticky = "NSEW",
-                                                      padx = (SPACING, SPACING), pady = (SPACING, SPACING))
+                                                      padx = (10, 10), pady = (10, 10))
         ttk.Button(self.__CommandFrame, text = '开始爬虫任务').grid(row = 2, column = 1, sticky = "NSEW",
-                                                      padx = (SPACING, SPACING), pady = (SPACING, SPACING))
+                                                      padx = (10, 10), pady = (10, 10))
         ttk.Button(self.__CommandFrame, text = '管理Cookie池').grid(row = 3, column = 0, sticky = "NSEW",
-                                                      padx = (SPACING, SPACING), pady = (SPACING, SPACING))
+                                                      padx = (10, 10), pady = (10, 10))
         ttk.Button(self.__CommandFrame, text = '结束爬虫任务').grid(row = 3, column = 1, sticky = "NSEW",
-                                                      padx = (SPACING, SPACING), pady = (SPACING, SPACING))
+                                                      padx = (10, 10), pady = (10, 10))
         ttk.Button(self.__CommandFrame, text = '账号信息',).grid(row = 4, column = 0, sticky = "NSEW",
-                                                      padx = (SPACING, SPACING), pady = (SPACING, SPACING))
+                                                      padx = (10, 10), pady = (10, 10))
         ttk.Button(self.__CommandFrame, text = '修改密码',).grid(row = 4, column = 1,  sticky = "NSEW",
-                                                      padx = (SPACING, SPACING), pady = (SPACING, SPACING))
+                                                      padx = (10, 10), pady = (10, 10))
         ttk.Button(self.__CommandFrame, text = '使用帮助', ).grid(row = 5, column = 0,  sticky = "NSEW",
-                                                      padx = (SPACING, SPACING), pady = (SPACING, SPACING))
+                                                      padx = (10, 10), pady = (10, 10))
         ttk.Button(self.__CommandFrame, text = '订阅信息',).grid(row = 5, column = 1,  sticky = "NSEW",
-                                                      padx = (SPACING, SPACING), pady = (SPACING, SPACING))
+                                                      padx = (10, 10), pady = (10, 10))
         ttk.Button(self.__CommandFrame, text = '退出系统').grid(row = 6, column = 0, columnspan = 2, sticky = "NSEW",
-                                                      padx = (SPACING, SPACING), pady = (SPACING, SPACING))
+                                                      padx = (10, 10), pady = (10, 10))
         self.__CommandFrame.columnconfigure(0, weight = 1)
         self.__CommandFrame.columnconfigure(1, weight = 1)
 
@@ -83,7 +82,6 @@ class App(ttk.Frame):
                                      columns = ('任务ID', '任务关键词', '任务链接', '删除任务', '任务状态'),
                                      show = 'headings',
                                      yscrollcommand = TaskScrollBar)
-
 
         # 整合两个列表
         self.NoteTab = ttk.Notebook(self.__ListFrame)

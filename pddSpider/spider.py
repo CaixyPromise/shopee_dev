@@ -3,38 +3,8 @@ import time
 import requests
 import re
 import pandas as pd
-from model import Goods, DataCleaner, SearchNode
+from model import Goods, DataCleanner, SearchNode
 import asyncio
-
-
-# class Goods:
-#     goodsName  : str  = 0  # 商品名称
-#     goodsUrl   : str  = 0  # 商品链接
-#     salesTip   : str  = 0  # 销售信息
-#     priceInfo  : int  = 0  # 价格信息
-#     groupPrice : int  = 0  # 拼团价格
-#     size       : str  = 0  # 尺寸
-#
-#     # __columns = {'商品名称', '商品链接', '销售信息', '价格信息', '拼团信息', '颜色分类', '商品尺寸'}
-#
-#     def __dict__(self):
-#         return {
-#                     '商品名称' : self.goodsName,
-#                     '商品链接' : self.goodsUrl,
-#                     '销售信息' : self.salesTip,
-#                     '价格信息' : self.priceInfo,
-#                     '拼团信息' : self.groupPrice,
-#                     '商品尺寸' : self.size
-#                 }
-#
-#     def __str__(self):
-#         return dumps(self.__dict__(), ensure_ascii = False)
-#
-#     def __setitem__(self, key, value):
-#         setattr(self, key, value)
-#         return self
-#     def __getitem__(self, item):
-#         return getattr(self, item, None)
 
 class PDDSpider:
     _instance = None
@@ -62,7 +32,7 @@ class PDDSpider:
 
         if (match):
             data = match.group(1)
-            result = Goods(**await DataCleaner(data))
+            result = Goods(await DataCleanner(data))
         else:
             result = "未找到匹配的数据"
         return result
@@ -114,12 +84,13 @@ class PDDSpider:
     #             )
     #     data_frame.to_csv('pdd_data.csv', index = False, encoding = 'utf_8_sig')
 
-cookies = r'api_uid=Ck0NrGN070QUGQBuNKnaAg==; _nano_fp=XpEjl0EonqUxn5Tyl9_FwwPwY_m_vACRD5a1tBGU; jrpl=xkQqzESTug2Nu9jndwfahqWAzAoQzVSQ; njrpl=xkQqzESTug2Nu9jndwfahqWAzAoQzVSQ; dilx=fzu7atcnkFg4EtVpVGTMc; webp=1; PDDAccessToken=SEJXBF7FZXODVEKAVGOY5JVTWTQHOJUUMODMG27YA44HHUINFVHA110af35; pdd_user_id=3750380719; pdd_user_uin=JCASQXBAMT7DCFPI3XD5B5IWPE_GEXDA; pdd_vds=gaLFNpnZikoMEYmhtvOMOWnvPpNknZOFaXmYoWmCmcnkyvnHbqahtHbYNYoz'
-solution = PDDSpider(cookies )
-solution.set_key('iPhone')
-for v in solution.fetch_search_data(cookies):
-    # try:
-    print(asyncio.run(solution.fetch_details_page(v)))
+if __name__ == '__main__':
+    cookies = r'api_uid=Ckp4NGScPIownwB1MYFoAg==; njrpl=xkQqzESTug2Nu9jndwfahqWAzAoQzVSQ; dilx=fzu7atcnkFg4EtVpVGTMc; webp=1; _nano_fp=XpEbX5gxX0dyn5Tqno_P~X~F_3zEyjyMWHFf5L98; jrpl=xkQqzESTug2Nu9jndwfahqWAzAoQzVSQ; PDDAccessToken=HSZZM4D5FDXPD7AA2BBLJZPEH4B77KGDYDEYBGSKODINWRVPHUMA120af35; pdd_user_id=3750380719; pdd_user_uin=JCASQXBAMT7DCFPI3XD5B5IWPE_GEXDA; pdd_vds=gaLcNdOwtmaBLBixydLsImQlNcPdmuLdibGxLbLLbLETmdEwbbyeODOxOdid'
+    solution = PDDSpider(cookies)
+    solution.set_key('iPhone')
+    for v in solution.fetch_search_data(cookies):
+        # try:
+        print(asyncio.run(solution.fetch_details_page(v)))
     # except Exception as E:
     #     print(f'except: {v}')
     #     print(f'info:{repr(E)}, line: {E.__traceback__.tb_lineno}')

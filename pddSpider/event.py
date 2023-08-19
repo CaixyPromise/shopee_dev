@@ -61,7 +61,6 @@ class PDDEvent:
     def __init__(self):
         self.__spider = PDDSpider()
 
-
     def set_cookie(self, cookie):
         self.__spider.set_cookie(cookie)
 
